@@ -1,4 +1,4 @@
-module github.com/ntswamp/tweetgo
+module github.com/bloveless/tweetgo
 
 go 1.14
 
