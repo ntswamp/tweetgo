@@ -382,3 +382,23 @@ type AccountsScheduledTweetsInput struct {
 //AccountsScheduledTweetsOutput ...
 type AccountsScheduledTweetsOutput struct {
 }
+
+type image struct {
+	ImageType string `json:"image_type"`
+	W         int    `json:"w"`
+	H         int    `json:"H"`
+}
+
+type MediaUploadInput struct {
+	Media         []byte  `schema:"media"`
+	MediaCategory *string `schema:"media_category"`
+}
+
+type MediaUploadOutput struct {
+	MediaId          int    `json:"media_id"`
+	MediaIdString    string `json:"media_id_string"`
+	MediaKey         string `json:"media_key"`
+	Size             int    `json:"size"`
+	ExpiresAfterSecs int    `json:"expires_after_secs"`
+	Image            image  `json:"image"`
+}

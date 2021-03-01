@@ -265,3 +265,26 @@ func (c Client) AccountsScheduledTweetsPost(input AccountsScheduledTweetsInput, 
 	log.Println("you've posted a scheduled tweet.", res.Body)
 	return res, nil
 }
+
+func (c Client) MediaUploadPost(input MediaUploadInput) (MediaUploadOutput, error) {
+	uri := "https://upload.twitter.com/1.1/media/upload.json"
+	params := processParams(input)
+	res, err := c.executeRequest(http.MethodPost, uri, params)
+	if err != nil {
+		return MediaUploadOutput{}, err
+	}
+	defer res.Body.Close()
+
+	resBytes, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return MediaUploadOutput{}, err
+	}
+
+	output := MediaUploadOutput{}
+	err = json.Unmarshal(resBytes, &output)
+	if err != nil {
+		return MediaUploadOutput{}, err
+	}
+
+	return output, nil
+}
