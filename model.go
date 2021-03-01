@@ -390,7 +390,7 @@ type image struct {
 }
 
 type MediaUploadInput struct {
-	Media         []byte  `schema:"media"`
+	MediaData     *string `schema:"media_data"`
 	MediaCategory *string `schema:"media_category"`
 }
 
